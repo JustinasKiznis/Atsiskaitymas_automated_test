@@ -30,7 +30,8 @@ public class Buy extends BaseTest{
         driver.findElement(By.linkText("Show All MP3 Players")).click();
         driver.findElement(By.id("list-view")).click();
 
-
+        //*[@id="content"]/div[4]/div[2]/div/div[2]/div[1]/h4/a/font/font
+        //*[@id="content"]/div[4]/div[2]/div/div[2]/div[2]/button[1]
 
         errors = driver.findElements(By.cssSelector(".alert-dismissible"));
         for (WebElement error : errors) {
@@ -41,6 +42,12 @@ public class Buy extends BaseTest{
             }
         }
         assertEquals(errorMessage, "Success: You have added "+ object +" to your shopping cart!");
+        
+        driver.findElement(By.xpath("//*[@id=\"cart\"]/button")).click();
+
+        String cardItem = driver.findElement(By.xpath("//*[@id=\"cart\"]/ul/li[1]/table/tbody/tr/td[2]/a")).toString();
+
+        assertEquals(cardItem, object);
     }
 
     @DataProvider(name = "addToCart")
